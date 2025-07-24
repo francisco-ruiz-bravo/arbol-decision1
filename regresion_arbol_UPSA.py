@@ -50,13 +50,15 @@ st.pyplot(fig)
 
 # Vamos a hacer que la pagina web sea interactiva
 st.subheader("¿Aprobaría a este Estudiante?")
+
 with st.form("Formulario de Predicción de Notas"):
-    p1 = st.number_input("Primer Parcial ", 0.0,100, 50.0)
-    p2 = st.number_input("Segundo Parcial ", 0.0,100, 50.0)
-    proy = st.number_input("Proyecto ", 0.0,100, 50.0)
-    ef = st.number_input("Examen Final ", 0.0,100, 50.0)
+    p1 = st.number_input("Primer Parcial ", 0.0, 100.0, 50.0)
+    p2 = st.number_input("Segundo Parcial ", 0.0, 100.0, 50.0)
+    proy = st.number_input("Proyecto ", 0.0, 100.0, 50.0)
+    ef = st.number_input("Examen Final ", 0.0, 100.0, 50.0)
     submitted = st.form_submit_button("Predecir")
+
 if submitted:
-    datos_nuevos = pd.DataFrame([[p1,p2,proy,ef]], columns=x.columns)
+    datos_nuevos = pd.DataFrame([[p1, p2, proy, ef]], columns=x.columns)
     prediccion = modelo.predict(datos_nuevos)[0]
     st.success(f"Resultado: {'Aprobado' if prediccion == 'Sí' else 'Reprobado'}")
